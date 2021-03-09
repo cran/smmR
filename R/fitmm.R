@@ -154,7 +154,7 @@ fitmm <- function(sequences, states, k = 1, init.estim = "mle") {
       stop("Probabilities in 'init.estim' must be between [0, 1]")
     }
     
-    if (!(sum(init.estim) == 1)) {
+    if (!((sum(init.estim) >= 1 - .Machine$double.eps) | (sum(init.estim) <= 1 + .Machine$double.eps))) {
       stop("The sum of 'init.estim' is not equal to one")
     }
     
@@ -164,8 +164,14 @@ fitmm <- function(sequences, states, k = 1, init.estim = "mle") {
   init <- init / sum(init)
   
   mm <- mm(states = states, init = init, ptrans = ptrans, k = k)
-  loglik <- .loglik(x = mm, processes = processes)
   
+  if (any(mm$init == 0)) {
+    message("The probabilities of the initial state(s) \"", 
+            paste0(names(which(mm$init == 0)), collapse = "\", \""),
+            "\" are 0.")
+  }
+  
+  loglik <- .loglik(x = mm, processes = processes)
   estimate <- mmfit(mm = mm, M = processes$M, loglik = loglik, sequences = sequences)
   
   return(estimate)

@@ -1,7 +1,7 @@
 Type: Package
 Package: smmR
 Title: Simulation, Estimation and Reliability of Semi-Markov Models
-Version: 1.0.0
+Version: 1.0.1
 Date: 2021-02-26
 Authors@R: c(person("Vlad Stefan", "Barbu", role = c("aut"),
     comment = c(ORCID = "0000-0002-0840-016X")),
@@ -29,15 +29,14 @@ Description: Performs parametric and non-parametric estimation and simulation
     Estimation and simulation of discrete-time k-th order Markov chains are 
     also considered.
 License: GPL
-Depends: seqinr, DiscreteWeibull
-Imports: MASS, graphics, Rcpp
+Imports: DiscreteWeibull, Rcpp, seqinr
 Suggests: utils, knitr, rmarkdown
 LinkingTo: Rcpp, RcppArmadillo
 VignetteBuilder: knitr
 Encoding: UTF-8
 RoxygenNote: 7.1.1
 NeedsCompilation: yes
-Packaged: 2021-03-02 10:28:25 UTC; florianlecocq
+Packaged: 2021-03-08 13:29:38 UTC; florianlecocq
 Author: Vlad Stefan Barbu [aut] (<https://orcid.org/0000-0002-0840-016X>),
   Caroline Berard [aut],
   Dominique Cellier [aut],
@@ -47,4 +46,4 @@ Author: Vlad Stefan Barbu [aut] (<https://orcid.org/0000-0002-0840-016X>),
   Nicolas Vergne [aut, cre]
 Maintainer: Nicolas Vergne <nicolas.vergne@univ-rouen.fr>
 Repository: CRAN
-Date/Publication: 2021-03-04 08:50:02 UTC
+Date/Publication: 2021-03-09 09:00:07 UTC

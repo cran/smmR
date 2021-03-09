@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
 
 ## ---- message = FALSE, echo = FALSE-------------------------------------------
 library(smmR)
+library(DiscreteWeibull)
 
 ## ----echo = FALSE, out.width = '400px', fig.cap = 'Waste treatment for a textile factory'----
 knitr::include_graphics("Waste_treatment.png")

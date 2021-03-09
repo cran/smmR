@@ -164,7 +164,7 @@ smmparametric <- function(states, init, ptrans, type.sojourn = c("fij", "fi", "f
     stop("Probabilities in 'init' must be between [0, 1]")
   }
   
-  if (!(sum(init) == 1)) {
+  if (!((sum(init) >= 1 - .Machine$double.eps) | (sum(init) <= 1 + .Machine$double.eps))) {
     stop("The sum of 'init' is not equal to one")
   }
   
@@ -188,7 +188,7 @@ smmparametric <- function(states, init, ptrans, type.sojourn = c("fij", "fi", "f
     stop("All the diagonal elements of 'ptrans' must be equal to 0 since transitions to the same state are not allowed")
   }
   
-  if (!all(apply(ptrans, 1, sum) == 1)) {
+  if (!all((apply(ptrans, 1, sum) >= 1 - .Machine$double.eps) | (apply(ptrans, 1, sum) <= 1 + .Machine$double.eps))) {
     stop("'ptrans' is not a stochastic matrix (column sums accross rows must be equal to one for each row)")
   }
   
@@ -250,7 +250,7 @@ smmparametric <- function(states, init, ptrans, type.sojourn = c("fij", "fi", "f
         if (i != j & !is.na(distr[i, j])) {
           checking <- checkParameter(distr[i, j], param[i, j, ])
           if (length(checking)) {
-            allChecking <- c(allChecking, paste0("-Transition (i = ", i, " to j = ", j, "): ", checking))
+            allChecking <- c(allChecking, paste0("-Transition (i = \"", states[i], "\" to j = \"", states[j], "\"): ", checking))
           }
         }
       }
@@ -280,7 +280,7 @@ smmparametric <- function(states, init, ptrans, type.sojourn = c("fij", "fi", "f
     for (i in 1:s) {
       checking <- checkParameter(distr[i], param[i, ])
       if (length(checking)) {
-        allChecking <- c(allChecking, paste0("-State ", ifelse(type.sojourn == "fi", "i", "j"), " = ", i, ": ", checking))
+        allChecking <- c(allChecking, paste0("-State ", ifelse(type.sojourn == "fi", "i", "j"), " = \"", states[i], "\": ", checking))
       }
     }
     
@@ -306,7 +306,7 @@ smmparametric <- function(states, init, ptrans, type.sojourn = c("fij", "fi", "f
     
     checking <- checkParameter(distr, param)
     if (length(checking) != 0) {
-      stop("Bad parameter specifications :\n\n", checking)
+      stop("Bad parameter specifications :\n", checking)
     }
     
   }
