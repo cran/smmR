@@ -12,6 +12,17 @@
 #' 
 #' @export
 #' 
+#' @examples
+#' states <- c("a", "c", "g", "t")
+#' s <- length(states)
+#' k <- 1
+#' init <- rep.int(1 / s, s)
+#' p <- matrix(c(0, 0, 0.3, 0.4, 0, 0, 0.5, 0.2, 0.7, 0.5, 
+#'               0, 0.4, 0.3, 0.5, 0.2, 0), ncol = s)
+#' 
+#' # Specify a Markov model of order 1
+#' markov <- mm(states = states, init = init, ptrans = p, k = k)
+#' 
 mm <- function(states, init, ptrans, k = 1) {
   
   #############################
@@ -62,12 +73,6 @@ mm <- function(states, init, ptrans, k = 1) {
   
   if (!(all(ptrans >= 0) & all(ptrans <= 1))) {
     stop("Probabilities in 'ptrans' must be between [0, 1]")
-  }
-  
-  if (k == 1) {
-    if (!all(diag(ptrans) == 0)) {
-      stop("All the diagonal elements of 'ptrans' must be equal to 0 since transitions to the same state are not allowed")
-    }
   }
   
   if (!all((apply(ptrans, 1, sum) >= 1 - .Machine$double.eps) | (apply(ptrans, 1, sum) <= 1 + .Machine$double.eps))) {
@@ -258,14 +263,13 @@ loglik.mm <- function(x, sequences) {
 #' states <- c("a", "c", "g", "t")
 #' s <- length(states)
 #' k <- 2
-#' vect.init <- rep.int(1 / s ^ k, s ^ k)
+#' init <- rep.int(1 / s ^ k, s ^ k)
 #' p <- matrix(0.25, nrow = s ^ k, ncol = s)
 #' 
-#' # Specify the Markov model
-#' markov1 <- mm(states = states, init = vect.init, ptrans = p, k = k)
+#' # Specify a Markov model of order 1
+#' markov <- mm(states = states, init = init, ptrans = p, k = k)
 #' 
-#' seq1 <- simulate(object = markov1, nsim = c(1000, 10000, 2000), seed = 150)
-#' seq1[[1]][1:15]
+#' seqs <- simulate(object = markov, nsim = c(1000, 10000, 2000), seed = 150)
 #' 
 simulate.mm <- function(object, nsim = 1, seed = NULL, ...) {
   

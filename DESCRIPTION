@@ -1,7 +1,7 @@
 Type: Package
 Package: smmR
 Title: Simulation, Estimation and Reliability of Semi-Markov Models
-Version: 1.0.1
+Version: 1.0.2
 Date: 2021-02-26
 Authors@R: c(person("Vlad Stefan", "Barbu", role = c("aut"),
     comment = c(ORCID = "0000-0002-0840-016X")),
@@ -36,7 +36,7 @@ VignetteBuilder: knitr
 Encoding: UTF-8
 RoxygenNote: 7.1.1
 NeedsCompilation: yes
-Packaged: 2021-03-08 13:29:38 UTC; florianlecocq
+Packaged: 2021-03-17 17:21:37 UTC; florianlecocq
 Author: Vlad Stefan Barbu [aut] (<https://orcid.org/0000-0002-0840-016X>),
   Caroline Berard [aut],
   Dominique Cellier [aut],
@@ -46,4 +46,4 @@ Author: Vlad Stefan Barbu [aut] (<https://orcid.org/0000-0002-0840-016X>),
   Nicolas Vergne [aut, cre]
 Maintainer: Nicolas Vergne <nicolas.vergne@univ-rouen.fr>
 Repository: CRAN
-Date/Publication: 2021-03-09 09:00:07 UTC
+Date/Publication: 2021-03-17 18:00:02 UTC
